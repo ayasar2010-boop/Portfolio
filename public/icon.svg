@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" role="img" aria-label="Ali Yaşar Erdoğan">
+  <title>Ali Yaşar Erdoğan — AYE</title>
+
+  <!-- Mission canvas: deep blue-black, stays dark regardless of browser theme -->
+  <rect width="64" height="64" rx="12" fill="#0b0f1a"/>
+
+  <!-- Subtle inner frame — adds depth at larger sizes -->
+  <rect x="2.5" y="2.5" width="59" height="59" rx="10" stroke="#1c2030" stroke-width="1"/>
+
+  <!-- Corner registration marks (mission-control signature) -->
+  <g stroke="#f2a23b" stroke-width="1.5" stroke-linecap="square" fill="none">
+    <path d="M7 13 V7 H13"/>
+    <path d="M51 7 H57 V13"/>
+    <path d="M57 51 V57 H51"/>
+    <path d="M13 57 H7 V51"/>
+  </g>
+
+  <!-- Monogram A — reads as initial & delta/triangle symbol -->
+  <g stroke="#f7f4ec" stroke-width="5" stroke-linecap="square" stroke-linejoin="miter" fill="none">
+    <path d="M15 52 L32 12 L49 52"/>
+    <path d="M21 39 H43"/>
+  </g>
+
+  <!-- Apex tracker dot — sodium amber accent -->
+  <circle cx="32" cy="12" r="2.75" fill="#f2a23b"/>
+
+  <!-- Base measurement rule -->
+  <path d="M13 56 H51" stroke="#f2a23b" stroke-width="1" opacity="0.45"/>
+</svg>

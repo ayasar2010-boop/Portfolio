@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+
+    <!-- Primary meta -->
+    <title>Ali Yaşar Erdoğan — Aerospace & Embedded Systems Engineer</title>
+    <meta
+      name="description"
+      content="Portfolio of Ali Yaşar Erdoğan — aerospace and embedded systems engineer building satellite hardware, reaction wheels, penetration testing tools, and VLF metal detection systems."
+    />
+    <meta name="author" content="Ali Yaşar Erdoğan" />
+    <meta
+      name="keywords"
+      content="Ali Yaşar Erdoğan, aerospace engineer, embedded systems, satellite, reaction wheel, SACSTOR, Pentrix, VLF metal detector, Turkey, Istanbul, portfolio"
+    />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="color-scheme" content="dark light" />
+    <meta name="theme-color" content="#0b0f1a" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#f7f4ef" media="(prefers-color-scheme: light)" />
+    <link rel="canonical" href="https://aliyasarerdogan.com/" />
+
+    <!-- Icons — SVG primary, PNG fallbacks for legacy + iOS -->
+    <link rel="icon" type="image/svg+xml" href="/icon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/icon-dark-32x32.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Ali Yaşar Erdoğan" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale:alternate" content="tr_TR" />
+    <meta property="og:url" content="https://aliyasarerdogan.com/" />
+    <meta
+      property="og:title"
+      content="Ali Yaşar Erdoğan — Aerospace & Embedded Systems Engineer"
+    />
+    <meta
+      property="og:description"
+      content="Satellite hardware, reaction wheels, pentesting tools, and VLF metal detection systems. Engineering for flight-critical and field-deployed systems."
+    />
+    <meta property="og:image" content="https://aliyasarerdogan.com/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Ali Yaşar Erdoğan — Portfolio" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Ali Yaşar Erdoğan — Aerospace & Embedded Systems Engineer"
+    />
+    <meta
+      name="twitter:description"
+      content="Satellite hardware, reaction wheels, pentesting tools, and VLF metal detection systems."
+    />
+    <meta name="twitter:image" content="https://aliyasarerdogan.com/og-image.png" />
+    <meta name="twitter:image:alt" content="Ali Yaşar Erdoğan — Portfolio" />
+
+    <!-- Preconnect/preload: fonts are self-hosted via fontsource, so no external preconnect needed -->
+
+    <!-- Structured data: Person schema for rich results -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Ali Yaşar Erdoğan",
+        "alternateName": "Ali Yasar Erdogan",
+        "url": "https://aliyasarerdogan.com",
+        "image": "https://aliyasarerdogan.com/og-image.png",
+        "jobTitle": "Aerospace & Embedded Systems Engineer",
+        "description": "Engineer focused on satellite hardware, attitude-control actuators, offensive security tooling, and VLF metal detection systems.",
+        "nationality": "Turkish",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "İstanbul",
+          "addressCountry": "TR"
+        },
+        "knowsAbout": [
+          "Aerospace Engineering",
+          "Embedded Systems",
+          "Satellite Hardware",
+          "Attitude Determination and Control",
+          "Reaction Wheels",
+          "Penetration Testing",
+          "VLF Signal Processing",
+          "PCB Design",
+          "Firmware"
+        ],
+        "sameAs": [
+          "https://github.com/ayasar2010-boop",
+          "https://www.linkedin.com/in/aliyasarerdogan"
+        ]
+      }
+    </script>
+
+    <!-- Structured data: WebSite with search action hint -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "url": "https://aliyasarerdogan.com/",
+        "name": "Ali Yaşar Erdoğan — Portfolio",
+        "inLanguage": "en"
+      }
+    </script>
+    <!-- Theme init — runs before first paint to prevent flash of wrong theme. Defaults to dark. -->
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem('aye-portfolio-theme');
+          var theme = stored === 'light' ? 'light' : 'dark';
+          document.documentElement.classList.toggle('dark', theme === 'dark');
+          document.documentElement.style.colorScheme = theme;
+        } catch (_) {
+          document.documentElement.classList.add('dark');
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
