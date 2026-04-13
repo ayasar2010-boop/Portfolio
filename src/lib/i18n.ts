@@ -212,7 +212,7 @@ const en: Translations = {
     label: '§ 03 / In Development',
     liveTag: 'Live Telemetry',
     heading1: 'VLF Metal',
-    heading2: 'Detection',
+    heading2: 'Detection System',
     subtitle: 'Advanced Analog Signal Conditioning · Target Discrimination',
     overview:
       'An ongoing R&D project focused on creating a high-performance Very Low Frequency (VLF) metal detector. The primary goal is to achieve extreme detection depth and precise target identification in highly mineralized soil conditions through advanced analog and digital processing techniques.',
@@ -284,14 +284,14 @@ const tr: Translations = {
     online: 'çevrimiçi',
     role: 'Elektronik Mühendisi',
     description:
-      '8-bit AVR\'den yüksek performanslı 32-bit sistemlere kadar farklı mikrodenetleyici mimarilerinde güçlü gömülü çözümler geliştirme konusunda uzmanlaşıyorum. Uzmanlığım, karmaşık kontrol teorisi ile pratik donanım uygulaması arasındaki boşluğu kapatır; hassas analog sinyal koşullandırma ve güç elektroniğine odaklanır.',
+      'Mühendislik yaklaşımımın merkezinde, teorik modelleri fiziksel dünyanın gürültü, termal kayma ve EMI gibi zorlu gerçeklikleriyle buluşturmak yer alıyor. 8-bit AVR mimarilerinden yüksek performanslı 32-bit sistemlere uzanan geniş bir yelpazede, sadece firmware geliştirmekle kalmıyor; bu sistemlerin temelini oluşturan hassas şematik ve çok katmanlı (4-6 katman) PCB tasarımlarını da bizzat gerçekleştiriyorum. KiCad ortamında sinyal bütünlüğünü, diferansiyel çift yönlendirmesini ve termal yönetimi optimize ederek, hassas analog ön uç (front-end) tasarımları ile güç elektroniği katmanlarını içeren uçtan uca çözümler inşa ediyorum. Karmaşık kontrol algoritmalarını (PID, Fuzzy Logic) kağıt üzerindeki birer denklem olmaktan çıkarıp, tasarımı tamamen bana ait olan optimize edilmiş donanımlar üzerinde yaşayan kararlı sistemlere dönüştürme konusunda uzmanlaşıyorum.',
     chips: {
       base: 'Konum',
       role: 'Rol',
       status: 'Durum',
       stack: 'Stack',
       roleValue: 'Tam Yığın Gömülü',
-      statusValue: '● Müsait',
+      statusValue: '● İletişime Açık',
     },
     scroll: 'Dosyaya Geç',
   },
@@ -360,7 +360,7 @@ const tr: Translations = {
         ],
       },
       {
-        subtitle: 'Tek Eksenli ADCS Test Düzeneği',
+        subtitle: 'Özgün Kontrol Kartı',
         overview:
           'Reaksiyon tekeri aracılığıyla uydu tutum kontrolünü taklit eden 1 eksenli dengeleme algoritmalarını doğrulamaya yönelik yüksek hassasiyetli deney düzeneği. Gerçek zamanlı PID ayarı ve yönelim kararlılığı analizi için özel test ortamı.',
         capabilities: [
