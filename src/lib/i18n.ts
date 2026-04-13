@@ -43,6 +43,7 @@ export interface Translations {
       capabilities: string;
       focus: string;
       viewProduct: string;
+      reachForDetails: string;
     };
     items: Array<{
       subtitle: string;

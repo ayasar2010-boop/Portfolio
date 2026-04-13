@@ -40,6 +40,7 @@ export function ProjectsSection() {
     overview: t.projects.items[i].overview,
     capabilities: t.projects.items[i].capabilities,
     focus: t.projects.items[i].focus,
+    ui: t.projects.ui,
   }));
 
   return (
@@ -71,7 +72,7 @@ export function ProjectsSection() {
 
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {projects.map((p) => (
-            <ProjectCard key={p.code} {...p} ui={t.projects.ui} />
+            <ProjectCard key={p.code} {...p} />
           ))}
         </div>
       </div>

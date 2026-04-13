@@ -134,41 +134,33 @@ export function GridSignal() {
         ctx.beginPath();
         ctx.moveTo(points[0].x, points[0].y);
         for (let j = 1; j < points.length; j++) ctx.lineTo(points[j].x, points[j].y);
-        ctx.strokeStyle = `rgba(${r},${g},${b},${alpha * 0.12})`;
-        ctx.lineWidth = 8;
+        ctx.strokeStyle = `rgba(${r},${g},${b},${alpha * 0.05})`;
+        ctx.lineWidth = 5;
         ctx.lineCap = 'round';
         ctx.lineJoin = 'round';
-        ctx.stroke();
-
-        // Mid glow
-        ctx.beginPath();
-        ctx.moveTo(points[0].x, points[0].y);
-        for (let j = 1; j < points.length; j++) ctx.lineTo(points[j].x, points[j].y);
-        ctx.strokeStyle = `rgba(${r},${g},${b},${alpha * 0.35})`;
-        ctx.lineWidth = 3;
         ctx.stroke();
 
         // Core line
         ctx.beginPath();
         ctx.moveTo(points[0].x, points[0].y);
         for (let j = 1; j < points.length; j++) ctx.lineTo(points[j].x, points[j].y);
-        ctx.strokeStyle = `rgba(${r},${g},${b},${alpha * 0.9})`;
-        ctx.lineWidth = 1;
+        ctx.strokeStyle = `rgba(${r},${g},${b},${alpha * 0.4})`;
+        ctx.lineWidth = 0.75;
         ctx.stroke();
 
-        // Bright head dot + glow
+        // Head dot + glow
         if (!p.stopped) {
-          const grad = ctx.createRadialGradient(p.headX, p.headY, 0, p.headX, p.headY, 14);
-          grad.addColorStop(0, `rgba(${r},${g},${b},${alpha * 0.5})`);
+          const grad = ctx.createRadialGradient(p.headX, p.headY, 0, p.headX, p.headY, 10);
+          grad.addColorStop(0, `rgba(${r},${g},${b},${alpha * 0.25})`);
           grad.addColorStop(1, `rgba(${r},${g},${b},0)`);
           ctx.beginPath();
-          ctx.arc(p.headX, p.headY, 14, 0, Math.PI * 2);
+          ctx.arc(p.headX, p.headY, 10, 0, Math.PI * 2);
           ctx.fillStyle = grad;
           ctx.fill();
 
           ctx.beginPath();
-          ctx.arc(p.headX, p.headY, 2.5, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(${r},${g},${b},${alpha})`;
+          ctx.arc(p.headX, p.headY, 1.5, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(${r},${g},${b},${alpha * 0.7})`;
           ctx.fill();
         }
       }
@@ -190,7 +182,7 @@ export function GridSignal() {
       ref={canvasRef}
       aria-hidden
       className="pointer-events-none fixed inset-0"
-      style={{ zIndex: 2 }}
+      style={{ zIndex: 0 }}
     />
   );
 }

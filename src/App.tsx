@@ -15,7 +15,7 @@ export default function App() {
     <ThemeProvider>
       <GridSignal />
       <Navigation />
-      <main className="relative">
+      <main className="relative z-[1]">
         <HeroSection />
         <AboutSection />
         <ProjectsSection />
