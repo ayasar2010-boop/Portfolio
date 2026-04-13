@@ -1,36 +1,9 @@
 import { Activity, Cpu, Radar, Settings } from 'lucide-react';
 import vlfDetector from '@/assets/images/vlf-detector.jpg';
+import { useLanguage } from '@/hooks/use-language';
 
-const HIGHLIGHTS = [
-  {
-    code: 'TX',
-    icon: Cpu,
-    title: 'Power Electronics',
-    description:
-      'Custom H-Bridge transmitter for maximum EM field penetration.',
-  },
-  {
-    code: 'AFE',
-    icon: Activity,
-    title: 'Analog Front-End',
-    description:
-      'High-gain chain with Sallen-Key active filters, multi-stage noise reduction.',
-  },
-  {
-    code: 'DSP',
-    icon: Settings,
-    title: 'Digital Signal Processing',
-    description:
-      'Real-time phase analysis on STM32 for ferrous / non-ferrous discrimination.',
-  },
-  {
-    code: 'GND',
-    icon: Radar,
-    title: 'Ground Balance',
-    description:
-      'Adaptive algorithms that filter soil mineralization artifacts.',
-  },
-] as const;
+const ICONS = [Cpu, Activity, Settings, Radar] as const;
+const CODES = ['TX', 'AFE', 'DSP', 'GND'] as const;
 
 function SignalWave() {
   return (
@@ -59,6 +32,8 @@ function SignalWave() {
 }
 
 export function OngoingSection() {
+  const { t } = useLanguage();
+
   return (
     <section
       id="ongoing"
@@ -83,9 +58,9 @@ export function OngoingSection() {
           {/* Left — editorial copy */}
           <div>
             <div className="flex items-center gap-3">
-              <div className="label-chip">§ 03 / In Development</div>
+              <div className="label-chip">{t.ongoing.label}</div>
               <span className="flex items-center gap-2 border border-[var(--signal)] px-2 py-0.5 font-mono text-[0.62rem] uppercase tracking-[0.18em] text-[var(--signal)]">
-                <span className="live-dot" aria-hidden /> Live Telemetry
+                <span className="live-dot" aria-hidden /> {t.ongoing.liveTag}
               </span>
             </div>
 
@@ -93,34 +68,30 @@ export function OngoingSection() {
               id="ongoing-title"
               className="mt-6 font-display text-5xl font-light leading-[0.95] tracking-[-0.025em] sm:text-6xl lg:text-[5.25rem]"
             >
-              VLF Metal <br />
-              <span className="italic text-[var(--accent)]">Detection</span> System
+              {t.ongoing.heading1} <br />
+              <span className="italic text-[var(--accent)]">{t.ongoing.heading2}</span> System
             </h2>
 
             <p className="mt-4 font-mono text-[0.72rem] uppercase tracking-[0.18em] text-[var(--muted-foreground)]">
-              Advanced Analog Signal Conditioning · Target Discrimination
+              {t.ongoing.subtitle}
             </p>
 
             <p className="mt-8 max-w-xl border-l border-[var(--border)] pl-6 leading-relaxed text-[var(--muted-foreground)]">
-              An ongoing R&amp;D project building a high-performance Very Low
-              Frequency metal detector. Goal: extreme detection depth and
-              precise target identification in highly mineralized soil, via
-              layered analog and digital processing.
+              {t.ongoing.overview}
             </p>
 
             {/* Milestone */}
             <div className="mt-10 border border-[var(--border)] bg-[var(--surface)] p-5">
-              <div className="label-chip mb-2">Current Milestone</div>
+              <div className="label-chip mb-2">{t.ongoing.milestone.label}</div>
               <p className="text-sm leading-relaxed text-[var(--foreground)]">
-                Optimizing BMS for extended field use. Fine-tuning ADC
-                sampling rate for higher resolution on weak return signals.
+                {t.ongoing.milestone.text}
               </p>
               <div className="mt-4">
                 <SignalWave />
                 <div className="mt-2 flex justify-between font-mono text-[0.6rem] uppercase tracking-[0.16em] text-[var(--muted-foreground)]">
-                  <span>f = 18.75 kHz</span>
-                  <span>SNR ↑</span>
-                  <span>Δϕ live</span>
+                  <span>{t.ongoing.freq}</span>
+                  <span>{t.ongoing.snr}</span>
+                  <span>{t.ongoing.phase}</span>
                 </div>
               </div>
             </div>
@@ -131,45 +102,91 @@ export function OngoingSection() {
             <div className="reg-marks relative aspect-[4/3] w-full overflow-hidden border border-[var(--border)] bg-[var(--surface)]">
               <img
                 src={vlfDetector}
-                alt="VLF Metal Detection System — PCB and electronics"
+                alt="VLF Metal Detection System — assembled PCB"
                 loading="lazy"
                 decoding="async"
                 className="h-full w-full object-cover"
               />
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[var(--background)]/80 via-transparent to-transparent" />
               <div className="absolute inset-x-4 bottom-4 font-mono text-[0.62rem] uppercase tracking-[0.16em] text-[var(--foreground)]">
-                <span className="text-[var(--accent)]">›</span> STM32 ·
-                Custom Power Electronics · LVGL GUI
+                {t.ongoing.imageCaption}
               </div>
             </div>
 
             <div className="grid gap-4 sm:grid-cols-2">
-              {HIGHLIGHTS.map((h) => (
-                <article
-                  key={h.code}
-                  className="reg-marks group flex flex-col gap-3 border border-[var(--border)] bg-[var(--surface-raised)] p-5 transition-colors hover:border-[var(--accent)]"
-                >
-                  <header className="flex items-center justify-between">
-                    <h.icon
-                      size={22}
-                      strokeWidth={1.25}
-                      className="text-[var(--accent)]"
-                    />
-                    <span className="font-mono text-[0.6rem] uppercase tracking-[0.18em] text-[var(--muted-foreground)]">
-                      {h.code}
-                    </span>
-                  </header>
-                  <h3 className="text-sm font-semibold text-[var(--foreground)]">
-                    {h.title}
-                  </h3>
-                  <p className="text-xs leading-relaxed text-[var(--muted-foreground)]">
-                    {h.description}
-                  </p>
-                </article>
-              ))}
+              {t.ongoing.highlights.map((h, i) => {
+                const Icon = ICONS[i];
+                return (
+                  <article
+                    key={CODES[i]}
+                    className="reg-marks group flex flex-col gap-3 border border-[var(--border)] bg-[var(--surface-raised)] p-5 transition-colors hover:border-[var(--accent)]"
+                  >
+                    <header className="flex items-center justify-between">
+                      <Icon
+                        size={22}
+                        strokeWidth={1.25}
+                        className="text-[var(--accent)]"
+                      />
+                      <span className="font-mono text-[0.6rem] uppercase tracking-[0.18em] text-[var(--muted-foreground)]">
+                        {CODES[i]}
+                      </span>
+                    </header>
+                    <h3 className="text-sm font-semibold text-[var(--foreground)]">
+                      {h.title}
+                    </h3>
+                    <p className="text-xs leading-relaxed text-[var(--muted-foreground)]">
+                      {h.description}
+                    </p>
+                  </article>
+                );
+              })}
             </div>
           </div>
         </div>
+
+        {/* Inbot — secondary ongoing project */}
+        <div className="mt-16 border-t border-[var(--border)] pt-12">
+          <article className="reg-marks group flex flex-col gap-5 border border-[var(--border)] bg-[var(--surface)] p-8 transition-colors hover:border-[var(--accent)] lg:flex-row lg:items-start lg:gap-12">
+            {/* Left: decorative ident block */}
+            <div className="shrink-0 lg:w-48">
+              <div className="flex h-24 w-24 items-center justify-center border border-[var(--border)] bg-[var(--surface-raised)] font-mono text-2xl font-bold tracking-widest text-[var(--accent)]">
+                IN
+              </div>
+              <div className="mt-3 font-mono text-[0.58rem] uppercase tracking-[0.2em] text-[var(--muted-foreground)]">
+                ONG.02
+              </div>
+            </div>
+
+            {/* Right: content */}
+            <div className="flex-1 space-y-4">
+              <div className="flex flex-wrap items-center gap-3">
+                <h3 className="font-display text-3xl leading-tight tracking-tight text-[var(--foreground)]">
+                  {t.ongoing.inbot.title}
+                </h3>
+                <span className="flex items-center gap-2 border border-[var(--signal)] px-2 py-0.5 font-mono text-[0.6rem] uppercase tracking-[0.18em] text-[var(--signal)]">
+                  <span className="live-dot" aria-hidden /> {t.ongoing.inbot.status}
+                </span>
+              </div>
+              <p className="font-mono text-[0.68rem] uppercase tracking-[0.16em] text-[var(--muted-foreground)]">
+                {t.ongoing.inbot.subtitle}
+              </p>
+              <p className="max-w-xl border-l border-[var(--border)] pl-5 text-sm leading-relaxed text-[var(--muted-foreground)]">
+                {t.ongoing.inbot.description}
+              </p>
+              <div className="flex flex-wrap gap-2 pt-1">
+                {['Mobile', 'AI', 'Assistant'].map((tag) => (
+                  <span
+                    key={tag}
+                    className="border border-[var(--border)] px-2.5 py-0.5 font-mono text-[0.6rem] uppercase tracking-[0.14em] text-[var(--muted-foreground)]"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </article>
+        </div>
+
       </div>
     </section>
   );

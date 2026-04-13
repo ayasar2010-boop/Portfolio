@@ -2,18 +2,20 @@ import { useEffect, useState } from 'react';
 import { Menu, Moon, Sun, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useTheme } from '@/components/theme-provider';
-
-const NAV_ITEMS = [
-  { num: '01', label: 'About', href: '#about' },
-  { num: '02', label: 'Missions', href: '#projects' },
-  { num: '03', label: 'Live', href: '#ongoing' },
-  { num: '04', label: 'Contact', href: '#contact' },
-] as const;
+import { useLanguage } from '@/hooks/use-language';
 
 export function Navigation() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();
+  const { lang, t, toggleLang } = useLanguage();
+
+  const NAV_ITEMS = [
+    { num: '01', label: t.nav.about, href: '#about' },
+    { num: '02', label: t.nav.missions, href: '#projects' },
+    { num: '03', label: t.nav.live, href: '#ongoing' },
+    { num: '04', label: t.nav.contact, href: '#contact' },
+  ];
 
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 32);
@@ -57,7 +59,7 @@ export function Navigation() {
         <div className="hidden items-center gap-1 md:flex">
           {NAV_ITEMS.map((item) => (
             <button
-              key={item.label}
+              key={item.num}
               type="button"
               onClick={() => go(item.href)}
               className="group flex items-center gap-2 px-4 py-2 font-mono text-[0.72rem] uppercase tracking-[0.18em] text-[var(--muted-foreground)] transition-colors hover:text-[var(--foreground)]"
@@ -68,15 +70,31 @@ export function Navigation() {
           ))}
           <button
             type="button"
+            onClick={toggleLang}
+            aria-label={`Switch to ${lang === 'en' ? 'Turkish' : 'English'}`}
+            className="ml-1 flex h-9 w-9 items-center justify-center border border-[var(--border)] font-mono text-[0.68rem] font-semibold uppercase tracking-[0.1em] text-[var(--muted-foreground)] transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)]"
+          >
+            {lang === 'en' ? 'TR' : 'EN'}
+          </button>
+          <button
+            type="button"
             onClick={toggleTheme}
             aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
-            className="ml-2 flex h-9 w-9 items-center justify-center border border-[var(--border)] text-[var(--muted-foreground)] transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)]"
+            className="ml-1 flex h-9 w-9 items-center justify-center border border-[var(--border)] text-[var(--muted-foreground)] transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)]"
           >
             {theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
           </button>
         </div>
 
         <div className="flex items-center gap-2 md:hidden">
+          <button
+            type="button"
+            onClick={toggleLang}
+            aria-label="Toggle language"
+            className="flex h-9 w-9 items-center justify-center border border-[var(--border)] font-mono text-[0.68rem] font-semibold text-[var(--muted-foreground)]"
+          >
+            {lang === 'en' ? 'TR' : 'EN'}
+          </button>
           <button
             type="button"
             onClick={toggleTheme}
@@ -102,7 +120,7 @@ export function Navigation() {
           <div className="mx-auto flex max-w-[1400px] flex-col px-6 py-4">
             {NAV_ITEMS.map((item) => (
               <button
-                key={item.label}
+                key={item.num}
                 type="button"
                 onClick={() => go(item.href)}
                 className="flex items-center gap-3 border-b border-[var(--border)] py-4 text-left font-mono text-xs uppercase tracking-[0.16em] text-[var(--muted-foreground)] last:border-b-0"

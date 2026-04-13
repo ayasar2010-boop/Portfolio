@@ -1,6 +1,7 @@
 import { ArrowDown, Crosshair } from 'lucide-react';
-import profileImage from '@/assets/images/profile-hero.jpg';
+import profileImage from '@/assets/images/workbench.jpg';
 import { useParallax } from '@/hooks/use-parallax';
+import { useLanguage } from '@/hooks/use-language';
 
 const HERO_FIRST = 'ALİ YAŞAR';
 const HERO_LAST = 'ERDOĞAN';
@@ -32,6 +33,7 @@ function SplitLine({
 
 export function HeroSection() {
   const scrollY = useParallax();
+  const { t } = useLanguage();
 
   return (
     <section
@@ -68,13 +70,13 @@ export function HeroSection() {
           style={{ opacity: 0, animation: 'reveal 0.9s ease-out 0.1s forwards' }}
         >
           <div className="label-chip">
-            <span>Mission Dossier · 2026</span>
+            <span>{t.hero.meta}</span>
           </div>
           <div className="hidden items-center gap-6 font-mono text-[0.68rem] uppercase tracking-[0.16em] text-[var(--muted-foreground)] sm:flex">
-            <span>N 41°00′</span>
-            <span>E 28°58′</span>
+            <span>N 39°55′</span>
+            <span>E 32°51′</span>
             <span className="flex items-center gap-2">
-              <span className="live-dot" aria-hidden /> online
+              <span className="live-dot" aria-hidden /> {t.hero.online}
             </span>
           </div>
         </div>
@@ -84,7 +86,7 @@ export function HeroSection() {
           <div>
             <h1
               id="hero-title"
-              className="font-display text-[clamp(3.25rem,10vw,9rem)] font-light leading-[0.88] tracking-[-0.035em] text-[var(--foreground)]"
+              className="font-display text-[clamp(2.6rem,7.5vw,7rem)] font-light leading-[0.88] tracking-[-0.035em] text-[var(--foreground)]"
             >
               <span className="block">
                 <SplitLine text={HERO_FIRST} delayBase={0.25} />
@@ -104,13 +106,10 @@ export function HeroSection() {
               }}
             >
               <p className="font-mono text-[0.72rem] uppercase tracking-[0.18em] text-[var(--muted-foreground)]">
-                Aerospace × Embedded Systems Engineer
+                {t.hero.role}
               </p>
               <p className="mt-4 text-balance text-base leading-relaxed text-[var(--foreground)] sm:text-lg">
-                Building flight-critical hardware and field-deployed instruments —
-                from <span className="text-[var(--accent)]">satellite attitude actuators</span> to{' '}
-                <span className="text-[var(--accent)]">VLF detection</span> front-ends. Full ownership from
-                schematic to firmware to telemetry.
+                {t.hero.description}
               </p>
             </div>
 
@@ -142,7 +141,7 @@ export function HeroSection() {
             <div className="reg-marks relative aspect-[4/5] w-full max-w-sm border border-[var(--border)] bg-[var(--surface)] p-3">
               <img
                 src={profileImage}
-                alt="Portrait of Ali Yaşar Erdoğan"
+                alt="Ali Yaşar Erdoğan at the workbench"
                 width={480}
                 height={600}
                 loading="eager"
@@ -159,19 +158,19 @@ export function HeroSection() {
             {/* Data chips */}
             <div className="mt-6 grid grid-cols-2 gap-3">
               <div className="data-chip">
-                <span>Base</span>
-                <span>İstanbul, TR</span>
+                <span>{t.hero.chips.base}</span>
+                <span>Ankara, TR</span>
               </div>
               <div className="data-chip">
-                <span>Role</span>
-                <span>Full-Stack Embedded</span>
+                <span>{t.hero.chips.role}</span>
+                <span>{t.hero.chips.roleValue}</span>
               </div>
               <div className="data-chip">
-                <span>Status</span>
-                <span className="text-[var(--accent)]">● Available</span>
+                <span>{t.hero.chips.status}</span>
+                <span className="text-[var(--accent)]">{t.hero.chips.statusValue}</span>
               </div>
               <div className="data-chip">
-                <span>Stack</span>
+                <span>{t.hero.chips.stack}</span>
                 <span>HW · FW · PCB</span>
               </div>
             </div>
@@ -181,7 +180,7 @@ export function HeroSection() {
         {/* Scroll indicator */}
         <div className="mt-16 flex items-center gap-4 font-mono text-[0.66rem] uppercase tracking-[0.2em] text-[var(--muted-foreground)]">
           <ArrowDown className="animate-bounce text-[var(--accent)]" size={14} />
-          <span>Scroll to Dossier</span>
+          <span>{t.hero.scroll}</span>
           <div className="h-px flex-1 bg-[var(--border)] tick-rule" />
         </div>
       </div>

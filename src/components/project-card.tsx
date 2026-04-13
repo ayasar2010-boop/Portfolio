@@ -3,15 +3,27 @@ import { ChevronDown } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
 
+interface ProjectCardUI {
+  expand: string;
+  collapse: string;
+  capabilities: string;
+  focus: string;
+  viewProduct: string;
+  reachForDetails: string;
+}
+
 export interface ProjectCardProps {
   code: string;
   title: string;
   subtitle: string;
   image: string;
+  secondaryImage?: string;
   overview: string;
   capabilities: readonly string[];
   focus: readonly string[];
   tags: readonly string[];
+  link?: string;
+  ui: ProjectCardUI;
 }
 
 export function ProjectCard({
@@ -19,10 +31,13 @@ export function ProjectCard({
   title,
   subtitle,
   image,
+  secondaryImage,
   overview,
   capabilities,
   focus,
   tags,
+  link,
+  ui,
 }: ProjectCardProps) {
   const [open, setOpen] = useState(false);
 
@@ -68,6 +83,16 @@ export function ProjectCard({
           ))}
         </div>
 
+        {/* Reach for details */}
+        <button
+          type="button"
+          onClick={() => document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' })}
+          className="flex items-center gap-2 font-mono text-[0.66rem] uppercase tracking-[0.18em] text-[var(--accent)] transition-opacity hover:opacity-70"
+        >
+          <span className="h-px w-3 bg-[var(--accent)]" />
+          {ui.reachForDetails}
+        </button>
+
         {/* Expand toggle */}
         <button
           type="button"
@@ -75,7 +100,7 @@ export function ProjectCard({
           aria-expanded={open}
           className="mt-auto flex items-center justify-between border-t border-[var(--border)] pt-4 font-mono text-[0.68rem] uppercase tracking-[0.18em] text-[var(--muted-foreground)] transition-colors hover:text-[var(--accent)]"
         >
-          <span>{open ? 'Collapse datasheet' : 'Expand datasheet'}</span>
+          <span>{open ? ui.collapse : ui.expand}</span>
           <ChevronDown
             size={14}
             className={cn(
@@ -88,7 +113,7 @@ export function ProjectCard({
         {open && (
           <div className="space-y-5 border-t border-[var(--border)] pt-5">
             <div>
-              <div className="label-chip mb-3">Capabilities</div>
+              <div className="label-chip mb-3">{ui.capabilities}</div>
               <ul className="space-y-2 text-xs leading-relaxed text-[var(--muted-foreground)]">
                 {capabilities.map((cap) => (
                   <li key={cap} className="flex gap-3">
@@ -99,7 +124,7 @@ export function ProjectCard({
               </ul>
             </div>
             <div>
-              <div className="label-chip mb-3">Engineering Focus</div>
+              <div className="label-chip mb-3">{ui.focus}</div>
               <ul className="space-y-2 text-xs leading-relaxed text-[var(--muted-foreground)]">
                 {focus.map((f) => (
                   <li key={f} className="flex gap-3">
@@ -109,6 +134,28 @@ export function ProjectCard({
                 ))}
               </ul>
             </div>
+            {secondaryImage && (
+              <div className="relative aspect-video w-full overflow-hidden border border-[var(--border)]">
+                <img
+                  src={secondaryImage}
+                  alt={`${title} — hardware detail`}
+                  loading="lazy"
+                  decoding="async"
+                  className="h-full w-full object-cover"
+                />
+              </div>
+            )}
+            {link && (
+              <a
+                href={link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-2 flex w-full items-center justify-between border border-[var(--accent)] px-4 py-2.5 font-mono text-[0.68rem] uppercase tracking-[0.18em] text-[var(--accent)] transition-colors hover:bg-[var(--accent)] hover:text-[var(--background)]"
+              >
+                <span>{ui.viewProduct}</span>
+                <span aria-hidden>→</span>
+              </a>
+            )}
           </div>
         )}
       </div>

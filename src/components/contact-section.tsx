@@ -1,13 +1,10 @@
-import { ArrowUpRight, Github, Linkedin, Mail } from 'lucide-react';
+import { ArrowUpRight, Linkedin, Mail } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-
-const QUICK_INFO = [
-  { label: 'Specialization', value: 'Aerospace × Embedded' },
-  { label: 'Focus', value: 'Control Systems · RF' },
-  { label: 'Status', value: 'Open to Projects', accent: true },
-] as const;
+import { useLanguage } from '@/hooks/use-language';
 
 export function ContactSection() {
+  const { t } = useLanguage();
+
   return (
     <section
       id="contact"
@@ -28,7 +25,7 @@ export function ContactSection() {
       />
 
       <div className="relative z-10 mx-auto max-w-[1400px] px-6 lg:px-12">
-        <div className="label-chip">§ 04 / Establish Comms</div>
+        <div className="label-chip">{t.contact.label}</div>
 
         <div className="mt-8 grid gap-16 lg:grid-cols-[1.2fr_0.8fr] lg:gap-24">
           <div>
@@ -36,27 +33,23 @@ export function ContactSection() {
               id="contact-title"
               className="font-display text-5xl font-light leading-[0.95] tracking-[-0.025em] sm:text-7xl lg:text-[6.5rem]"
             >
-              Let's build <br />
-              something{' '}
-              <span className="italic text-[var(--accent)]">flight-worthy</span>.
+              {t.contact.heading}
             </h2>
 
             <p className="mt-10 max-w-lg border-l border-[var(--border)] pl-6 leading-relaxed text-[var(--muted-foreground)]">
-              Open to R&amp;D collaborations, system design reviews, and
-              hardware consultancy — especially anything where control theory
-              meets real silicon and real noise.
+              {t.contact.description}
             </p>
 
             <div className="mt-10 flex flex-wrap gap-3">
               <Button asChild size="lg">
-                <a href="mailto:contact@aliyasarerdogan.com">
+                <a href="mailto:ayasar2010@gmail.com">
                   <Mail size={16} />
-                  <span>Send Transmission</span>
+                  <span>{t.contact.sendButton}</span>
                 </a>
               </Button>
               <Button asChild size="lg" variant="outline">
                 <a
-                  href="https://www.linkedin.com/in/aliyasarerdogan"
+                  href="https://www.linkedin.com/in/ali-ya%C5%9Far-erdo%C4%9Fan-0957ba228/"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -65,23 +58,12 @@ export function ContactSection() {
                   <ArrowUpRight size={14} />
                 </a>
               </Button>
-              <Button asChild size="lg" variant="outline">
-                <a
-                  href="https://github.com/ayasar2010-boop"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Github size={16} />
-                  <span>GitHub</span>
-                  <ArrowUpRight size={14} />
-                </a>
-              </Button>
             </div>
           </div>
 
           {/* Info panel */}
           <aside className="flex flex-col gap-4">
-            {QUICK_INFO.map((item) => (
+            {t.contact.quickInfo.map((item) => (
               <div
                 key={item.label}
                 className="reg-marks flex items-baseline justify-between border border-[var(--border)] bg-[var(--surface)] px-6 py-5"
@@ -90,8 +72,8 @@ export function ContactSection() {
                   {item.label}
                 </span>
                 <span
-                  className={`font-display text-lg tracking-tight ${
-                    'accent' in item && item.accent
+                  className={`text-right font-display text-sm tracking-tight ${
+                    item.label === 'Status' || item.label === 'Durum'
                       ? 'text-[var(--accent)]'
                       : 'text-[var(--foreground)]'
                   }`}
@@ -101,7 +83,7 @@ export function ContactSection() {
               </div>
             ))}
             <div className="mt-2 border-t border-[var(--border)] pt-4 font-mono text-[0.64rem] uppercase tracking-[0.18em] text-[var(--muted-foreground)] tick-rule">
-              <div className="pb-3">· İstanbul, Turkey · UTC+3</div>
+              <div className="pb-3">{t.contact.location}</div>
             </div>
           </aside>
         </div>

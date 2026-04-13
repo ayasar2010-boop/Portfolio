@@ -1,5 +1,8 @@
+import { useLanguage } from '@/hooks/use-language';
+
 export function Footer() {
   const year = new Date().getFullYear();
+  const { t } = useLanguage();
 
   return (
     <footer className="relative border-t border-[var(--border)] py-10">
@@ -14,7 +17,7 @@ export function Footer() {
           <span>EOM</span>
           <span className="flex items-center gap-2">
             <span className="live-dot" aria-hidden />
-            signal nominal
+            {t.footer.signal}
           </span>
         </div>
       </div>
