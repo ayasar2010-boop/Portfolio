@@ -42,7 +42,7 @@ export function ContactSection() {
 
             <div className="mt-10 flex flex-wrap gap-3">
               <Button asChild size="lg">
-                <a href="mailto:ayasar2010@gmail.com">
+                <a href="mailto:contact@aliyasarerdogan.com">
                   <Mail size={16} />
                   <span>{t.contact.sendButton}</span>
                 </a>
