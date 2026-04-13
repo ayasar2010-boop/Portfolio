@@ -1,9 +1,33 @@
-import { ArrowUpRight, Linkedin, Mail } from 'lucide-react';
+import { ArrowUpRight, Linkedin, Send } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/hooks/use-language';
+import { useState } from 'react';
 
 export function ContactSection() {
   const { t } = useLanguage();
+  const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle');
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setStatus('sending');
+    const form = e.currentTarget;
+    const data = new FormData(form);
+    try {
+      const res = await fetch('https://formspree.io/f/mzdybeye', {
+        method: 'POST',
+        body: data,
+        headers: { Accept: 'application/json' },
+      });
+      if (res.ok) {
+        setStatus('sent');
+        form.reset();
+      } else {
+        setStatus('error');
+      }
+    } catch {
+      setStatus('error');
+    }
+  }
 
   return (
     <section
@@ -40,13 +64,66 @@ export function ContactSection() {
               {t.contact.description}
             </p>
 
-            <div className="mt-10 flex flex-wrap gap-3">
-              <Button asChild size="lg">
-                <a href="mailto:contact@aliyasarerdogan.com">
-                  <Mail size={16} />
-                  <span>{t.contact.sendButton}</span>
-                </a>
-              </Button>
+            {/* Contact form */}
+            <form onSubmit={handleSubmit} className="mt-10 space-y-4 max-w-lg">
+              <div className="grid gap-4 sm:grid-cols-2">
+                <div>
+                  <label className="block font-mono text-[0.62rem] uppercase tracking-[0.16em] text-[var(--muted-foreground)] mb-2">
+                    {t.contact.form.name}
+                  </label>
+                  <input
+                    type="text"
+                    name="name"
+                    required
+                    className="w-full border border-[var(--border)] bg-[var(--surface)] px-4 py-3 text-sm text-[var(--foreground)] placeholder:text-[var(--muted-foreground)] focus:border-[var(--accent)] focus:outline-none transition-colors"
+                    placeholder={t.contact.form.namePlaceholder}
+                  />
+                </div>
+                <div>
+                  <label className="block font-mono text-[0.62rem] uppercase tracking-[0.16em] text-[var(--muted-foreground)] mb-2">
+                    {t.contact.form.email}
+                  </label>
+                  <input
+                    type="email"
+                    name="email"
+                    required
+                    className="w-full border border-[var(--border)] bg-[var(--surface)] px-4 py-3 text-sm text-[var(--foreground)] placeholder:text-[var(--muted-foreground)] focus:border-[var(--accent)] focus:outline-none transition-colors"
+                    placeholder={t.contact.form.emailPlaceholder}
+                  />
+                </div>
+              </div>
+              <div>
+                <label className="block font-mono text-[0.62rem] uppercase tracking-[0.16em] text-[var(--muted-foreground)] mb-2">
+                  {t.contact.form.message}
+                </label>
+                <textarea
+                  name="message"
+                  required
+                  rows={5}
+                  className="w-full border border-[var(--border)] bg-[var(--surface)] px-4 py-3 text-sm text-[var(--foreground)] placeholder:text-[var(--muted-foreground)] focus:border-[var(--accent)] focus:outline-none transition-colors resize-none"
+                  placeholder={t.contact.form.messagePlaceholder}
+                />
+              </div>
+              <div className="flex items-center gap-4">
+                <Button type="submit" size="lg" disabled={status === 'sending' || status === 'sent'}>
+                  <Send size={16} />
+                  <span>
+                    {status === 'sending'
+                      ? t.contact.form.sending
+                      : status === 'sent'
+                      ? t.contact.form.sent
+                      : t.contact.sendButton}
+                  </span>
+                </Button>
+                {status === 'error' && (
+                  <span className="font-mono text-[0.62rem] uppercase tracking-[0.14em] text-red-400">
+                    {t.contact.form.error}
+                  </span>
+                )}
+              </div>
+            </form>
+
+            <div className="mt-6">
               <Button asChild size="lg" variant="outline">
                 <a
                   href="https://www.linkedin.com/in/ali-ya%C5%9Far-erdo%C4%9Fan-0957ba228/"

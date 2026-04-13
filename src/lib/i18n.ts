@@ -77,6 +77,17 @@ export interface Translations {
     heading: string;
     description: string;
     sendButton: string;
+    form: {
+      name: string;
+      namePlaceholder: string;
+      email: string;
+      emailPlaceholder: string;
+      message: string;
+      messagePlaceholder: string;
+      sending: string;
+      sent: string;
+      error: string;
+    };
     quickInfo: Array<{ label: string; value: string }>;
     location: string;
   };
@@ -260,6 +271,17 @@ const en: Translations = {
     description:
       'Currently at capacity with high-priority R&D missions. Open to selective networking for long-term strategic opportunities. Reach out to discuss how we can bridge the gap in the future.',
     sendButton: 'Send Transmission',
+    form: {
+      name: 'Name',
+      namePlaceholder: 'Your name',
+      email: 'Email',
+      emailPlaceholder: 'your@email.com',
+      message: 'Message',
+      messagePlaceholder: 'Tell me about your project...',
+      sending: 'Sending...',
+      sent: 'Transmission sent',
+      error: 'Failed — try again',
+    },
     quickInfo: [
       { label: 'Specialization', value: 'Embedded Systems & Hardware Engineering' },
       { label: 'Focus', value: 'Precision Control Systems · Analog Signal Conditioning' },
@@ -447,6 +469,17 @@ const tr: Translations = {
     description:
       'Yüksek öncelikli Ar-Ge süreçleri nedeniyle şu an yoğun bir takvimdeyim. Stratejik ve uzun vadeli fırsatlar için profesyonel ağımı genişletmeye devam ediyorum. Gelecek odaklı projeler için irtibatta kalalım.',
     sendButton: 'Mesaj Gönder',
+    form: {
+      name: 'İsim',
+      namePlaceholder: 'Adınız',
+      email: 'E-posta',
+      emailPlaceholder: 'eposta@adresiniz.com',
+      message: 'Mesaj',
+      messagePlaceholder: 'Projenizden bahsedin...',
+      sending: 'Gönderiliyor...',
+      sent: 'Mesaj iletildi',
+      error: 'Hata — tekrar deneyin',
+    },
     quickInfo: [
       { label: 'Uzmanlık', value: 'Gömülü Sistemler & Donanım Mühendisliği' },
       { label: 'Odak', value: 'Hassas Kontrol Sistemleri · Analog Sinyal Koşullandırma' },
