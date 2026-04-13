@@ -69,7 +69,7 @@ export function OngoingSection() {
               className="mt-6 font-display text-5xl font-light leading-[0.95] tracking-[-0.025em] sm:text-6xl lg:text-[5.25rem]"
             >
               {t.ongoing.heading1} <br />
-              <span className="italic text-[var(--accent)]">{t.ongoing.heading2}</span> System
+              <span className="italic text-[var(--accent)]">{t.ongoing.heading2}</span>
             </h2>
 
             <p className="mt-4 font-mono text-[0.72rem] uppercase tracking-[0.18em] text-[var(--muted-foreground)]">
